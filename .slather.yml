@@ -1,0 +1,6 @@
+coverage_service: cobertura_xml
+xcodeproj: SwiftyUiLabel.xcodeproj
+scheme: SwiftyUiLabel
+output_directory: reports
+ignore:
+  - SwiftyUiLabelTests/*
