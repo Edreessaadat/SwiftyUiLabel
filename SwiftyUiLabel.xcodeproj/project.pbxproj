@@ -10,6 +10,12 @@
 		57854CDE25C7BBBC00D1BC46 /* SwiftyUiLabel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57854CD425C7BBBB00D1BC46 /* SwiftyUiLabel.framework */; };
 		57854CE325C7BBBC00D1BC46 /* SwiftyUiLabelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57854CE225C7BBBC00D1BC46 /* SwiftyUiLabelTests.swift */; };
 		57854CE525C7BBBC00D1BC46 /* SwiftyUiLabel.h in Headers */ = {isa = PBXBuildFile; fileRef = 57854CD725C7BBBB00D1BC46 /* SwiftyUiLabel.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		57854CFB25C7BC3D00D1BC46 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57854CF925C7BC3D00D1BC46 /* UIColor+Extension.swift */; };
+		57854CFC25C7BC3D00D1BC46 /* UIColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57854CFA25C7BC3D00D1BC46 /* UIColors.swift */; };
+		57854D0325C7BC6100D1BC46 /* UIFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57854D0025C7BC6100D1BC46 /* UIFont.swift */; };
+		57854D0425C7BC6100D1BC46 /* UIStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57854D0125C7BC6100D1BC46 /* UIStyles.swift */; };
+		57854D0525C7BC6100D1BC46 /* UIScaledFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57854D0225C7BC6100D1BC46 /* UIScaledFonts.swift */; };
+		57854D0A25C7BC7D00D1BC46 /* UIStyledLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57854D0925C7BC7D00D1BC46 /* UIStyledLabel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +35,12 @@
 		57854CDD25C7BBBC00D1BC46 /* SwiftyUiLabelTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftyUiLabelTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		57854CE225C7BBBC00D1BC46 /* SwiftyUiLabelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyUiLabelTests.swift; sourceTree = "<group>"; };
 		57854CE425C7BBBC00D1BC46 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		57854CF925C7BC3D00D1BC46 /* UIColor+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
+		57854CFA25C7BC3D00D1BC46 /* UIColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColors.swift; sourceTree = "<group>"; };
+		57854D0025C7BC6100D1BC46 /* UIFont.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIFont.swift; sourceTree = "<group>"; };
+		57854D0125C7BC6100D1BC46 /* UIStyles.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIStyles.swift; sourceTree = "<group>"; };
+		57854D0225C7BC6100D1BC46 /* UIScaledFonts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIScaledFonts.swift; sourceTree = "<group>"; };
+		57854D0925C7BC7D00D1BC46 /* UIStyledLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIStyledLabel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +83,9 @@
 		57854CD625C7BBBB00D1BC46 /* SwiftyUiLabel */ = {
 			isa = PBXGroup;
 			children = (
+				57854D0825C7BC6C00D1BC46 /* UIControls */,
+				57854CFF25C7BC4D00D1BC46 /* Fonts */,
+				57854CF625C7BC2000D1BC46 /* Colors */,
 				57854CD725C7BBBB00D1BC46 /* SwiftyUiLabel.h */,
 				57854CD825C7BBBB00D1BC46 /* Info.plist */,
 			);
@@ -84,6 +99,33 @@
 				57854CE425C7BBBC00D1BC46 /* Info.plist */,
 			);
 			path = SwiftyUiLabelTests;
+			sourceTree = "<group>";
+		};
+		57854CF625C7BC2000D1BC46 /* Colors */ = {
+			isa = PBXGroup;
+			children = (
+				57854CF925C7BC3D00D1BC46 /* UIColor+Extension.swift */,
+				57854CFA25C7BC3D00D1BC46 /* UIColors.swift */,
+			);
+			path = Colors;
+			sourceTree = "<group>";
+		};
+		57854CFF25C7BC4D00D1BC46 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				57854D0025C7BC6100D1BC46 /* UIFont.swift */,
+				57854D0225C7BC6100D1BC46 /* UIScaledFonts.swift */,
+				57854D0125C7BC6100D1BC46 /* UIStyles.swift */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		57854D0825C7BC6C00D1BC46 /* UIControls */ = {
+			isa = PBXGroup;
+			children = (
+				57854D0925C7BC7D00D1BC46 /* UIStyledLabel.swift */,
+			);
+			path = UIControls;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -147,6 +189,7 @@
 				TargetAttributes = {
 					57854CD325C7BBBB00D1BC46 = {
 						CreatedOnToolsVersion = 12.3;
+						LastSwiftMigration = 1230;
 					};
 					57854CDC25C7BBBC00D1BC46 = {
 						CreatedOnToolsVersion = 12.3;
@@ -194,6 +237,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				57854CFB25C7BC3D00D1BC46 /* UIColor+Extension.swift in Sources */,
+				57854D0525C7BC6100D1BC46 /* UIScaledFonts.swift in Sources */,
+				57854CFC25C7BC3D00D1BC46 /* UIColors.swift in Sources */,
+				57854D0325C7BC6100D1BC46 /* UIFont.swift in Sources */,
+				57854D0425C7BC6100D1BC46 /* UIStyles.swift in Sources */,
+				57854D0A25C7BC7D00D1BC46 /* UIStyledLabel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -341,6 +390,7 @@
 		57854CE925C7BBBC00D1BC46 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -356,6 +406,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.edrees.SwiftyUiLabel;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -364,6 +415,7 @@
 		57854CEA25C7BBBC00D1BC46 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -387,6 +439,7 @@
 		57854CEC25C7BBBC00D1BC46 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = SwiftyUiLabelTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -404,6 +457,7 @@
 		57854CED25C7BBBC00D1BC46 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = SwiftyUiLabelTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (

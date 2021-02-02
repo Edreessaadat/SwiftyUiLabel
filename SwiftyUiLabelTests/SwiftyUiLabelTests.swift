@@ -10,24 +10,26 @@ import XCTest
 
 class SwiftyUiLabelTests: XCTestCase {
 
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+    func testColorExtension() {
+        XCTAssertEqual(UIColor(red: 0.5, green: 0.5, blue: 1, alpha: 0.5).hexCode(), "#7f7fff", "Hex code mismatching")
     }
-
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+    
+    func testColor_hexCode() {
+        XCTAssertEqual(UIColor.red.hexCode(), "#ff0000")
     }
-
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    
+    func testConvenienceInit() {
+        XCTAssertEqual(UIColor(hexValues: 0xff0000), UIColor.red)
     }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
+    
+    func testFont_fonttype() {
+        let font = Font.fontKind(.Regular, size: 14.0)
+        XCTAssertNotNil(font)
+    }
+    
+    func testFont__fonttype() {
+        let font = Font._fontKind(.Regular, size: 14.0)
+        XCTAssertNotNil(font)
     }
 
 }
