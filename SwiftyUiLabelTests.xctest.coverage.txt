@@ -1,0 +1,36 @@
+    1|       |//
+    2|       |//  SwiftyUiLabelTests.swift
+    3|       |//  SwiftyUiLabelTests
+    4|       |//
+    5|       |//  Created by Mohammad Edrees on 1/31/21.
+    6|       |//
+    7|       |
+    8|       |import XCTest
+    9|       |@testable import SwiftyUiLabel
+   10|       |
+   11|       |class SwiftyUiLabelTests: XCTestCase {
+   12|       |
+   13|      1|    func testColorExtension() {
+   14|      1|        XCTAssertEqual(UIColor(red: 0.5, green: 0.5, blue: 1, alpha: 0.5).hexCode(), "#7f7fff", "Hex code mismatching")
+   15|      1|    }
+   16|       |    
+   17|      1|    func testColor_hexCode() {
+   18|      1|        XCTAssertEqual(UIColor.red.hexCode(), "#ff0000")
+   19|      1|    }
+   20|       |    
+   21|      1|    func testConvenienceInit() {
+   22|      1|        XCTAssertEqual(UIColor(hexValues: 0xff0000), UIColor.red)
+   23|      1|    }
+   24|       |    
+   25|      1|    func testFont_fonttype() {
+   26|      1|        let font = Font.fontKind(.Regular, size: 14.0)
+   27|      1|        XCTAssertNotNil(font)
+   28|      1|    }
+   29|       |    
+   30|      1|    func testFont__fonttype() {
+   31|      1|        let font = Font._fontKind(.Regular, size: 14.0)
+   32|      1|        XCTAssertNotNil(font)
+   33|      1|    }
+   34|       |
+   35|       |}
+

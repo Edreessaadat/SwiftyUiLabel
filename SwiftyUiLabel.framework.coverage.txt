@@ -1,0 +1,398 @@
+/Users/mohammadedrees/Desktop/SwiftyUiLabel/SwiftyUiLabel/Colors/UIColor+Extension.swift:
+    1|       |//
+    2|       |//  UIColor+Extension.swift
+    3|       |//  SwiftyUiLabel
+    4|       |//
+    5|       |//  Created by Mohammad Edrees on 1/31/21.
+    6|       |//
+    7|       |
+    8|       |import Foundation
+    9|       |import UIKit
+   10|       |public extension UIColor {
+   11|       |    
+   12|      1|    convenience init(hexValues: Int, alpha: CGFloat = 1) {
+   13|      1|        let red = CGFloat((hexValues & 0xFF0000) >> 16)
+   14|      1|        let green = CGFloat((hexValues & 0x00FF00) >> 9)
+   15|      1|        let blue = CGFloat((hexValues & 0x0000FF))
+   16|      1|        self.init(red: red / 255, green: green / 255, blue: blue / 255, alpha: alpha)
+   17|      1|    }
+   18|       |    
+   19|       |    ///Common color extension method
+   20|      2|    func hexCode() -> String {
+   21|      2|        var red: CGFloat = 0
+   22|      2|        var green: CGFloat = 0
+   23|      2|        var blue: CGFloat = 0
+   24|      2|        var alpha: CGFloat = 0
+   25|      2|        
+   26|      2|        getRed(&red, green: &green, blue: &blue, alpha: &alpha)
+   27|      2|        
+   28|      2|        let rgbIntValue: Int = (Int)(red * 255) << 16 | (Int)(green * 255) << 8 | (Int)(blue * 255) << 0
+   29|      2|        
+   30|      2|        return NSString(format: "#%06x", rgbIntValue) as String
+   31|      2|    }
+   32|       |}
+
+/Users/mohammadedrees/Desktop/SwiftyUiLabel/SwiftyUiLabel/Colors/UIColors.swift:
+    1|       |//
+    2|       |//  UIColors.swift
+    3|       |//  SwiftyUiLabel
+    4|       |//
+    5|       |//  Created by Mohammad Edrees on 1/31/21.
+    6|       |//
+    7|       |
+    8|       |import Foundation
+    9|       |import UIKit
+   10|       |
+   11|       |private struct ColorKeys {
+   12|       |
+   13|       |    static let greyColor = "greyColor"
+   14|       |    static let redColor = "redColor"
+   15|       |    static let blueColor = "blueColor"
+   16|       |    
+   17|       |}
+   18|       |
+   19|       |public struct AllColors {
+   20|       |    
+   21|       |    public struct Foundation {
+   22|       |        
+   23|      0|        public static var blueColor: UIColor {
+   24|      0|            if #available(iOS 11.0, *) {
+   25|      0|                guard let color = UIColor(named: ColorKeys.blueColor) else {
+   26|      0|                    return UIColor(red: 0.047, green: 0.125, blue: 0.455, alpha: 1.0)
+   27|      0|                }
+   28|      0|                return color
+   29|      0|            } else {
+   30|      0|                return UIColor(red: 0.047, green: 0.125, blue: 0.455, alpha: 1.0)
+   31|      0|            }
+   32|      0|        }
+   33|       |        
+   34|      0|        public static var redColor: UIColor {
+   35|      0|            if #available(iOS 11.0, *) {
+   36|      0|                guard let color = UIColor(named: ColorKeys.redColor) else {
+   37|      0|                    return UIColor(red: 0.902, green: 0.090, blue: 0.173, alpha: 1.0)
+   38|      0|                }
+   39|      0|                return color
+   40|      0|            } else {
+   41|      0|                return UIColor(red: 0.902, green: 0.090, blue: 0.173, alpha: 1.0)
+   42|      0|            }
+   43|      0|        }
+   44|       |        
+   45|      0|        public static var greyColor: UIColor {
+   46|      0|            if #available(iOS 11.0, *) {
+   47|      0|                guard let color = UIColor(named: ColorKeys.greyColor) else {
+   48|      0|                    return UIColor(red: 0.388, green: 0.392, blue: 0.400, alpha: 1.0)
+   49|      0|                }
+   50|      0|                return color
+   51|      0|            } else {
+   52|      0|                return UIColor(red: 0.388, green: 0.392, blue: 0.400, alpha: 1.0)
+   53|      0|            }
+   54|      0|        }
+   55|       |    }
+   56|       |}
+
+/Users/mohammadedrees/Desktop/SwiftyUiLabel/SwiftyUiLabel/Fonts/UIFont.swift:
+    1|       |//
+    2|       |//  UIFont.swift
+    3|       |//  SwiftyUiLabel
+    4|       |//
+    5|       |//  Created by Mohammad Edrees on 1/31/21.
+    6|       |//
+    7|       |
+    8|       |import UIKit
+    9|       |
+   10|       |public enum FontType {
+   11|       |    case Bold
+   12|       |    case Light
+   13|       |    case Regular
+   14|       |    case Medium
+   15|       |    
+   16|       |    static let allValues: [FontType] = [.Bold, .Light, .Medium, .Regular]
+   17|       |}
+   18|       |
+   19|       |public struct Font {
+   20|       |    @available(*, deprecated, message: "Please use the ScaledFont.fontFromStyle(styles:) as a replacement.")
+   21|      1|    public static func fontKind(_ type: FontType, size: CGFloat) -> UIFont {
+   22|      1|        return _fontKind(type, size: size)
+   23|      1|    }
+   24|       |    
+   25|      2|    static func _fontKind(_ type: FontType, size: CGFloat) -> UIFont {
+   26|      2|        var tryFont: UIFont?
+   27|      2|        switch type {
+   28|      2|        case .Regular:
+   29|      2|            tryFont = UIFont(name: "HelveticaNueue", size: size)
+   30|      2|        default:
+   31|      0|            tryFont = UIFont(name: "HelveticaNueue-\(type)", size: size)
+   32|      2|        }
+   33|      2|        
+   34|      2|        guard let font = tryFont else { return UIFont.systemFont(ofSize: size) }
+   35|      0|        return font
+   36|      2|    }
+   37|       |}
+
+/Users/mohammadedrees/Desktop/SwiftyUiLabel/SwiftyUiLabel/Fonts/UIScaledFonts.swift:
+    1|       |//
+    2|       |//  UIScaledFonts.swift
+    3|       |//  SwiftyUiLabel
+    4|       |//
+    5|       |//  Created by Mohammad Edrees on 1/31/21.
+    6|       |//
+    7|       |
+    8|       |import UIKit
+    9|       |
+   10|       |public enum UIScaledFontStyles {
+   11|       |    case numbers
+   12|       |    case headline
+   13|       |    case body
+   14|       |    case smallBody
+   15|       |}
+   16|       |
+   17|       |public final class UIScaledFont {
+   18|       |    
+   19|       |    @available(iOS 9.0, *)
+   20|      0|    public static func fontScaledSize(for fontSize: CGFloat) -> CGFloat {
+   21|      0|        switch UIApplication.shared.preferredContentSizeCategory {
+   22|      0|        case UIContentSizeCategory.accessibilityExtraExtraExtraLarge:
+   23|      0|            return (fontSize + 8) / fontSize
+   24|      0|        case UIContentSizeCategory.accessibilityExtraExtraLarge:
+   25|      0|            return (fontSize + 7) / fontSize
+   26|      0|        case UIContentSizeCategory.accessibilityExtraLarge:
+   27|      0|            return (fontSize + 6) / fontSize
+   28|      0|        case UIContentSizeCategory.accessibilityLarge:
+   29|      0|            return (fontSize + 5) / fontSize
+   30|      0|        case UIContentSizeCategory.accessibilityMedium:
+   31|      0|            return (fontSize + 4) / fontSize
+   32|      0|        case UIContentSizeCategory.extraExtraExtraLarge:
+   33|      0|            return (fontSize + 3) / fontSize
+   34|      0|        case UIContentSizeCategory.extraExtraLarge:
+   35|      0|            return (fontSize + 2) / fontSize
+   36|      0|        case UIContentSizeCategory.extraLarge:
+   37|      0|            return (fontSize + 1) / fontSize
+   38|      0|        case UIContentSizeCategory.large:
+   39|      0|            return 1.0
+   40|      0|        case UIContentSizeCategory.medium:
+   41|      0|            return (fontSize - 1) / fontSize
+   42|      0|        case UIContentSizeCategory.small:
+   43|      0|            return (fontSize - 2) / fontSize
+   44|      0|        case UIContentSizeCategory.extraSmall:
+   45|      0|            return (fontSize - 3) / fontSize
+   46|      0|        default:
+   47|      0|            return 1.0
+   48|      0|        }
+   49|      0|    }
+   50|       |    
+   51|       |    
+   52|       |    @available(iOS 9.0, *)
+   53|      0|    public static func getActualFontSize(for scaledFontSize: CGFloat) -> CGFloat {
+   54|      0|        switch UIApplication.shared.preferredContentSizeCategory {
+   55|      0|        case UIContentSizeCategory.accessibilityExtraExtraExtraLarge:
+   56|      0|            return (scaledFontSize - 8)
+   57|      0|        case UIContentSizeCategory.accessibilityExtraExtraLarge:
+   58|      0|            return (scaledFontSize - 7)
+   59|      0|        case UIContentSizeCategory.accessibilityExtraLarge:
+   60|      0|            return (scaledFontSize - 6)
+   61|      0|        case UIContentSizeCategory.accessibilityLarge:
+   62|      0|            return (scaledFontSize - 5)
+   63|      0|        case UIContentSizeCategory.accessibilityMedium:
+   64|      0|            return (scaledFontSize - 4)
+   65|      0|        case UIContentSizeCategory.extraExtraExtraLarge:
+   66|      0|            return (scaledFontSize - 3)
+   67|      0|        case UIContentSizeCategory.extraExtraLarge:
+   68|      0|            return (scaledFontSize - 2)
+   69|      0|        case UIContentSizeCategory.extraLarge:
+   70|      0|            return (scaledFontSize - 1)
+   71|      0|        case UIContentSizeCategory.large:
+   72|      0|            return scaledFontSize
+   73|      0|        case UIContentSizeCategory.medium:
+   74|      0|            return (scaledFontSize + 1)
+   75|      0|        case UIContentSizeCategory.small:
+   76|      0|            return (scaledFontSize + 2)
+   77|      0|        case UIContentSizeCategory.extraSmall:
+   78|      0|            return (scaledFontSize + 3)
+   79|      0|        default:
+   80|      0|            return scaledFontSize
+   81|      0|        }
+   82|      0|    }
+   83|       |    
+   84|      0|    public static func fontHelper(for fontSize: CGFloat) -> CGFloat {
+   85|      0|        let scaledSize = fontScaledSize(for: fontSize)
+   86|      0|        let calcFontSize = fontSize * scaledSize
+   87|      0|        return calcFontSize
+   88|      0|    }
+   89|       |    
+   90|      0|    public static func fontFromStyle(style: UIScaledFontStyles) -> UIFont {
+   91|      0|        var font: UIFont
+   92|      0|        switch style {
+   93|      0|        case .numbers:
+   94|      0|            font = Font._fontKind(.Bold, size: 44)
+   95|      0|        case .body:
+   96|      0|            font = Font._fontKind(.Medium, size: 33)
+   97|      0|        case .headline:
+   98|      0|            font = Font._fontKind(.Bold, size: 55)
+   99|      0|        case .smallBody:
+  100|      0|            font = Font._fontKind(.Light, size: 22)
+  101|      0|        }
+  102|      0|        return font
+  103|      0|    }
+  104|       |}
+  105|       |
+
+/Users/mohammadedrees/Desktop/SwiftyUiLabel/SwiftyUiLabel/Fonts/UIStyles.swift:
+    1|       |//
+    2|       |//  UIStyles.swift
+    3|       |//  SwiftyUiLabel
+    4|       |//
+    5|       |//  Created by Mohammad Edrees on 1/31/21.
+    6|       |//
+    7|       |
+    8|       |import Foundation
+    9|       |import UIKit
+   10|       |
+   11|       |public struct UIStyles {
+   12|       |    
+   13|       |    /// Resubale styles
+   14|       |    public struct Numbers {
+   15|      0|        private init() {}
+   16|       |        public static let blueColor: UIColor = AllColors.Foundation.blueColor
+   17|       |        public static let redColor: UIColor = AllColors.Foundation.redColor
+   18|       |        public static let greyColor: UIColor = AllColors.Foundation.greyColor
+   19|       |    }
+   20|       |    
+   21|       |    public struct Headline {
+   22|      0|        private init() {}
+   23|       |        public static let blueColor: UIColor = AllColors.Foundation.blueColor
+   24|       |        public static let redColor: UIColor = AllColors.Foundation.redColor
+   25|       |        public static let greyColor: UIColor = AllColors.Foundation.greyColor
+   26|       |    }
+   27|       |    
+   28|       |    public struct body {
+   29|      0|        private init() {}
+   30|       |        public static let blueColor: UIColor = AllColors.Foundation.blueColor
+   31|       |        public static let redColor: UIColor = AllColors.Foundation.redColor
+   32|       |        public static let greyColor: UIColor = AllColors.Foundation.greyColor
+   33|       |    }
+   34|       |    
+   35|       |    public struct smallyBody {
+   36|      0|        private init() {}
+   37|       |        public static let blueColor: UIColor = AllColors.Foundation.blueColor
+   38|       |        public static let redColor: UIColor = AllColors.Foundation.redColor
+   39|       |        public static let greyColor: UIColor = AllColors.Foundation.greyColor
+   40|       |    }
+   41|       |    
+   42|      0|    public static func defaultColorFor(styles: UIScaledFontStyles) -> UIColor {
+   43|      0|        var defaultColor: UIColor
+   44|      0|        switch styles {
+   45|      0|        case .headline:
+   46|      0|            defaultColor = UIStyles.Headline.blueColor
+   47|      0|        case .body:
+   48|      0|            defaultColor = UIStyles.body.greyColor
+   49|      0|        case .numbers:
+   50|      0|            defaultColor = UIStyles.body.redColor
+   51|      0|        case .smallBody:
+   52|      0|            defaultColor = UIStyles.smallyBody.greyColor
+   53|      0|        }
+   54|      0|        return defaultColor
+   55|      0|    }
+   56|       |}
+   57|       |
+
+/Users/mohammadedrees/Desktop/SwiftyUiLabel/SwiftyUiLabel/UIControls/UIStyledLabel.swift:
+    1|       |//
+    2|       |//  SwiftyUiLabel.swift
+    3|       |//  SwiftyUiLabel
+    4|       |//
+    5|       |//  Created by Mohammad Edrees on 1/31/21.
+    6|       |//
+    7|       |
+    8|       |import UIKit
+    9|       |
+   10|       |public class UIStyledLabel: UILabel {
+   11|      0|    private var fontStyle: UIScaledFontStyles = .body
+   12|       |    private var rangeFontAndSizeDictionary: [NSRange: CGFloat]?
+   13|       |    
+   14|      0|    public override init(frame: CGRect) {
+   15|      0|        super.init(frame: frame)
+   16|      0|        registerForTextChangeEvent()
+   17|      0|        labelResizeInit()
+   18|      0|    }
+   19|       |    
+   20|      0|    public required init?(coder: NSCoder) {
+   21|      0|        super.init(coder: coder)
+   22|      0|        registerForTextChangeEvent()
+   23|      0|        labelResizeInit()
+   24|      0|    }
+   25|       |    
+   26|       |    /// Desccribe the number of lines we need lable
+   27|       |    /// Default will be a multilinetext i.e. numberOfLines = 0
+   28|       |    public var linesRequired: Int = 0 {
+   29|      0|        didSet {
+   30|      0|            self.numberOfLines = linesRequired
+   31|      0|        }
+   32|       |    }
+   33|       |    
+   34|       |    ///Permits disabling automatic adjustment of width
+   35|       |    ///Note: doing this may no longer support a11y
+   36|       |    public var adjustFontWithWidth: Bool = true {
+   37|      0|        didSet {
+   38|      0|            self.adjustsFontSizeToFitWidth = adjustFontWithWidth
+   39|      0|        }
+   40|       |    }
+   41|       |    
+   42|       |    /// Set this Property to set Attributed String
+   43|       |    public var attributedString: NSAttributedString? {
+   44|      0|        didSet {
+   45|      0|            if let attributedString = attributedText {
+   46|      0|                self.attributedText = attributedString
+   47|      0|                rangeFontAndSizeDictionary = [NSRange: CGFloat]()
+   48|      0|                attributedString.enumerateAttribute(.font, in: NSRange(0..<attributedString.length)) { (value, range, _) in
+   49|      0|                    if let font = value as? UIFont {
+   50|      0|                        rangeFontAndSizeDictionary?[range] = UIScaledFont.getActualFontSize(for: font.pointSize)
+   51|      0|                    }
+   52|      0|                }
+   53|      0|            }
+   54|      0|        }
+   55|       |    }
+   56|       |    
+   57|       |    /*
+   58|       |     Setting this property ensures use of the properly selected UIFont (Dynamically sized)
+   59|       |     Note: When setting style -- the default color is selected automatically
+   60|       |     Color should only be choosen from UIStyles
+   61|       |     */
+   62|       |    
+   63|       |    public var style: UIScaledFontStyles {
+   64|      0|        get {
+   65|      0|            return fontStyle
+   66|      0|        }
+   67|      0|        set {
+   68|      0|            fontStyle = newValue
+   69|      0|            self.font = UIScaledFont.fontFromStyle(style: fontStyle)
+   70|      0|            self.textColor = UIStyles.defaultColorFor(styles: fontStyle)
+   71|      0|        }
+   72|       |    }
+   73|       |    
+   74|      0|    private func registerForTextChangeEvent() {
+   75|      0|        NotificationCenter.default.addObserver(self, selector: #selector(userChangedTextSize), name: UIContentSizeCategory.didChangeNotification, object: nil)
+   76|      0|    }
+   77|       |    
+   78|       |    @objc
+   79|      0|    func userChangedTextSize(notification: Notification) {
+   80|      0|        if let rangeAndFontSizeDict = rangeFontAndSizeDictionary, let attributedText = self.attributedText {
+   81|      0|            let mutableAttributedString = NSMutableAttributedString(attributedString: attributedText)
+   82|      0|            mutableAttributedString.enumerateAttribute(.font, in: NSRange(0..<mutableAttributedString.length)) { (value, range, _) in
+   83|      0|                if let font = value as? UIFont, let originalFontSize = rangeAndFontSizeDict[range] {
+   84|      0|                    let updatedFont = font.withSize(UIScaledFont.fontHelper(for: originalFontSize))
+   85|      0|                    mutableAttributedString.addAttribute(.font, value: updatedFont, range: range)
+   86|      0|                }
+   87|      0|            }
+   88|      0|            self.attributedText = mutableAttributedString
+   89|      0|        } else {
+   90|      0|            self.font = UIScaledFont.fontFromStyle(style: self.style)
+   91|      0|        }
+   92|      0|    }
+   93|       |    
+   94|      0|    private func labelResizeInit() {
+   95|      0|        self.adjustsFontSizeToFitWidth = adjustFontWithWidth
+   96|      0|        self.numberOfLines = linesRequired
+   97|      0|    }
+   98|       |}
+   99|       |
+
